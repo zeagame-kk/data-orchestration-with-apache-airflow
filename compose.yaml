@@ -300,20 +300,20 @@ services:
       _PIP_ADDITIONAL_REQUIREMENTS: ''
     user: "0:0"
 
-  # airflow-cli:
-  #   <<: *airflow-common
-  #   profiles:
-  #     - debug
-  #   environment:
-  #     <<: *airflow-common-env
-  #     CONNECTION_CHECK_MAX_COUNT: "0"
-  #   # Workaround for entrypoint issue. See: https://github.com/apache/airflow/issues/16252
-  #   command:
-  #     - bash
-  #     - -c
-  #     - airflow
-  #   depends_on:
-  #     <<: *airflow-common-depends-on
+  airflow-cli:
+    <<: *airflow-common
+    profiles:
+      - debug
+    environment:
+      <<: *airflow-common-env
+      CONNECTION_CHECK_MAX_COUNT: "0"
+    # Workaround for entrypoint issue. See: https://github.com/apache/airflow/issues/16252
+    command:
+      - bash
+      - -c
+      - airflow
+    depends_on:
+      <<: *airflow-common-depends-on
 
   # You can enable flower by adding "--profile flower" option e.g. docker-compose --profile flower up
   # or by explicitly targeted on the command line e.g. docker-compose up flower.
